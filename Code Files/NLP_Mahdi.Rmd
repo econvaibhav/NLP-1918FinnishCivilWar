@@ -1,0 +1,198 @@
+---
+title: "NLP_rough"
+author: "Mahdi Munshi"
+date: "2024-05-25"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+library(ggplot2)
+library(e1071)
+library(caret)
+library(quanteda)
+library(irlba)
+library(randomForest)
+```
+
+
+```{r}
+speech.cw <- read.csv("speech_civilwar.csv", stringsAsFactors = FALSE) #stringAsFactors = FALSE; since we will be analyzing textual data, we try to avoid creating factors that we do not need
+```
+
+## Looking at missing data
+
+```{r}
+missing_percentage <- sapply(speech.cw, function(x) sum(is.na(x))) / nrow(speech.cw) * 100
+
+missing_data <- data.frame(
+  Variable = names(sapply(speech.cw, function(x) sum(is.na(x)))),
+  Missing_Values = sapply(speech.cw, function(x) sum(is.na(x))),
+  Missing_Percentage = missing_percentage
+)
+
+missing_data[missing_data$Missing_Values > 0, ]
+```
+
+# Looking at the factors of the categorical variables
+
+```{r}
+# Transforming the values of the categorical variables as factors; since we usedstringAsFactors = FALSE to avoid creating factors
+speech.cw$party <- as.factor(speech.cw$party)
+speech.cw$gender <- as.factor(speech.cw$gender)
+speech.cw$Age.Group_Speech. <- as.factor(speech.cw$Age.Group_Speech.)
+speech.cw$Period <- as.factor(speech.cw$Period)
+```
+
+```{r}
+list(
+  party = levels(speech.cw$party),
+  gender = levels(speech.cw$gender),
+  age_group = levels(speech.cw$Age.Group_Speech.),
+  period = levels(speech.cw$Period)
+)
+```
+
+## Trying to reduce some of the missing values
+
+```{r}
+levels(speech.cw$Period) <- union(levels(speech.cw$Period), "1907-1917")
+speech.cw$Period[is.na(speech.cw$Period) & speech.cw$Year.Speech. >= 1907 & speech.cw$Year.Speech. <= 1917] <- "1907-1917"
+
+speech.cw$Age.Group_Speech.[is.na(speech.cw$Age.Group_Speech.) & speech.cw$Age.Speech. >= 25 & speech.cw$Age.Speech. <= 35] <- "25-35"
+
+```
+
+Now let's look at the missing values once again to confirm what we did
+
+```{r}
+missing_percentage <- sapply(speech.cw, function(x) sum(is.na(x))) / nrow(speech.cw) * 100
+
+missing_data <- data.frame(
+  Variable = names(sapply(speech.cw, function(x) sum(is.na(x)))),
+  Missing_Values = sapply(speech.cw, function(x) sum(is.na(x))),
+  Missing_Percentage = missing_percentage
+)
+
+missing_data[missing_data$Missing_Values > 0, ]
+```
+
+## Exploring the categorical variables
+
+Let's look at the gender of the speakers first.
+
+```{r}
+prop.table(table(speech.cw$gender)) * 100
+```
+
+We can see majority of the speakers are male (87.56%). Now let's look at the parties.
+
+```{r}
+table(speech.cw$party)
+```
+
+Most of the speakers are from **Suomen Sosialidemokraattinen Puolue**. Let's try to look at the number of male and female speakers within the parties.
+
+
+```{r}
+table(speech.cw$party, speech.cw$gender)
+```
+
+Now maybe we can look at the age group of the speakers.
+
+```{r}
+prop.table(table(speech.cw$Age.Group_Speech.)) * 100
+```
+
+
+## Calculating the length of the speeches (by text length)
+
+```{r}
+speech.cw$Speech.Character <- nchar(speech.cw$content)
+summary(speech.cw$Speech.Character)
+```
+
+Now let's try to make a new categorical variable on the length of the speeches with factors based on a 5-point likert scale ranging from very short speeches to very long speeches.
+
+For that, we have to select the breakpoints first. I am considering the following, but we can change it anytime.
+
+
+1. **Very Short**: Min to 1st Quartile
+
+2. **Short**: 1st Quartile to Median
+
+3. **Long**: Median to 3rd Quartile
+
+4. **Very Long**: 3rd Quartile to Max
+
+
+
+```{r}
+speech.cw$Speech.Length <- cut(speech.cw$Speech.Character,
+                                        breaks = c(71, 4046, 7976, 13972, 126631),
+                                        labels = c("Very Short", "Short", "Long", "Very Long"),
+                                        include.lowest = TRUE)
+```
+
+
+Let's look at the new variable.
+
+```{r}
+table(speech.cw$Speech.Length)
+```
+
+
+```{r}
+ggplot(data = speech.cw, aes(x = Age.Group_Speech., fill = Speech.Length)) +
+  geom_bar(position = "dodge") +
+  labs(title = "Speech Length by Gender",
+       x = "Gender",
+       y = "Count",
+       fill = "Speech Length") +
+  theme_minimal()
+
+```
+
+```{r}
+ggplot(speech.cw, aes(x = Speech.Length, fill = Speech.Length)) +
+  geom_bar() +
+  facet_wrap(~ party, scales = "free_y") +  
+  theme_minimal() +
+  labs(title = "Distribution of Speech Length by Party",
+       x = "Speech Length",
+       y = "Count") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
