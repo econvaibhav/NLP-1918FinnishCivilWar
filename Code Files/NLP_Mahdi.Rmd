@@ -11,10 +11,14 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 ```{r}
+library(tidyverse)
+library(stringr)
+library(dplyr)
 library(ggplot2)
 library(e1071)
 library(caret)
 library(quanteda)
+library(finnsurveytext)
 library(irlba)
 library(randomForest)
 ```
@@ -169,30 +173,275 @@ ggplot(speech.cw, aes(x = Speech.Length, fill = Speech.Length)) +
 ```
 
 
+# Preprocessing the data
 
 
+The idea is that, we are going to select the 25 words before and 25 words after of some preselected keywords from each speech and get rid of all unnecessary things such as punctuation marks, numbers, stopwords etc. for our analysis.
 
 
+Let's start with something simple: lowercasing everything from our textual data.
 
 
+```{r}
+speech.cw$content.lower <- tolower(speech.cw$content)
+```
 
 
+Let's try to get rid of the punctuation marks and numbers. But for that, we need to create a corpus. We will also tokenize the corpus, which will make it easier to remove the punctuation and numbers by using the "quanteda" package. However, I am planning to *reverse* the tokenization to merge it with our dataframe to have a *final*, *preprocessed* dataset; and it is really easy to tokenize whenever we want with a one-word function. 
 
 
+```{r}
+speech.cw_corp <- corpus(speech.cw, text_field = "content.lower")
+
+speech.cw_token <- tokens( 
+    speech.cw_corp, 
+    remove_punct=TRUE,
+    remove_numbers=TRUE
+)
+```
 
 
+Now we have removed the punctuations and numbers, I we can finally attempt to get the 25 words before and 25 words after of our preselected keywords.
 
 
+*I spent 3 hours trying to do that by manually creating and using functions and loops and whatnot, until I discovered the 'kwic' function from the wonderful package of "quanteda". I wrote so many codes, whereas it took only a single line of code for all that. I was this close pulling out all my hair out of frustration; Social Data Science will be my reason behind going bald.*
 
 
+```{r}
+keywords <- c("vapaussota", "luokkasota", "punakapina", "punainen kapina", 
+              "torpparikapina", "vallankumous", "kapina", "sisällissota", 
+              "kansalaissota", "veljessota")
+
+kwic_results <- kwic(speech.cw_token, pattern = keywords, window = 25) #This one line of code -_-
+```
 
 
+Now that I have the "25 words before and 25 words after" data in different variables, let's concatenate the variables to have a common variable of texts, and then mutate the identifier variable 'docname' to have a common variable 'X' with the main dataset (speech.cw) so that we can merge it for our *final* dataset. I am also keeping the 'pattern' variable to mention the keywords present in the texts.
 
 
+```{r}
+kwic_results$X <- as.integer(substr(kwic_results$docname, 5, nchar(kwic_results$docname)))
+```
 
 
+```{r}
+speech.cw_50 <- data.frame(
+  X = kwic_results$X,
+  pattern = kwic_results$pattern,
+  content.50 = paste(kwic_results$pre, kwic_results$keyword, kwic_results$post, sep = " ")
+)
+```
 
 
+However, notice that because of the multiple presence of the keywords in a single speech, the identifier variable 'X' has multiple same values, meaning we have multiple "25 words before and 25 words after" from a single speech; and we cannot merge them with the main dataset in this state. Let's combine the multiple 'content.50' values for the same value of 'X'.
 
+
+```{r}
+speech.cw_50_aggregated <- speech.cw_50 %>%
+  group_by(X) %>%
+  summarise(
+    pattern = toString(unique(pattern)),
+    content.50 = paste(content.50, collapse = " ")
+  )
+```
+
+
+Yes! Now we have unique values for 'X' and ready to merge it with the main dataset!
+
+
+```{r}
+speech.cw_merged <- merge(speech.cw, speech.cw_50_aggregated, by = "X", all.x = TRUE)
+```
+
+
+Looks like the dataset is starting to take a shape!
+
+However, our work is not done yet. We still have a couple of stuffs to do.
+
+Let's try to remove the stopwords now. We have to create the corpus and tokenize again to remove the stopwords.
+
+
+```{r}
+speech.cw_corp_2 <- corpus(speech.cw_merged, text_field = "content.50")
+
+speech.cw_token_2 <- tokens(speech.cw_corp_2)
+```
+
+
+Thanks to Vaibhav for sharing the list of Finnish stopwords, I will be using it to remove the words from the corpus.
+
+
+```{r}
+stopwords_fi2 <- c("aiemmin","aika","aikaa","aikaan","aikaisemmin","aikaisin","aikajen",
+                  "aikana","aikoina","aikoo","aikovat","aina","ainakaan","ainakin","ainoa",
+                  "ainoat","aiomme","aion","aiotte","aist","aivan","ajan","alas","alemmas",
+                  "alkuisin","alkuun","alla","alle","aloitamme","aloitan","aloitat","aloitatte",
+                  "aloitattivat","aloitettava","aloitettevaksi","aloitettu","aloitimme","aloitin",
+                  "aloitit","aloititte","aloittaa","aloittamatta","aloitti","aloittivat","alta",
+                  "aluksi","alussa","alusta","annettavaksi","annetteva","annettu","ansiosta",
+                  "antaa","antamatta","antoi","aoua","apu","asia","asiaa","asian","asiasta",
+                  "asiat","asioiden","asioihin","asioita","asti","avuksi","avulla","avun",
+                  "avutta","edelle","edelleen","edellä","edeltä","edemmäs","edes","edessä",
+                  "edestä","ehkä","ei","eikä","eilen","eivät","eli","ellei","elleivät","ellemme"
+                  ,"ellen","ellet","ellette","emme","en","enemmän","eniten","ennen","ensi",
+                  "ensimmäinen","ensimmäiseksi","ensimmäisen","ensimmäisenä","ensimmäiset",
+                  "ensimmäisiksi","ensimmäisinä","ensimmäisiä","ensimmäistä","ensin","entinen",
+                  "entisen","entisiä","entisten","entistä","enää","eri","erittäin","erityisesti",
+                  "eräiden","eräs","eräät","esi","esiin","esillä","esimerkiksi","et","eteen",
+                  "etenkin","etessa","ette","ettei","että","haikki","halua","haluaa","haluamatta",
+                  "haluamme","haluan","haluat","haluatte","haluavat","halunnut","halusi","halusimme",
+                  "halusin","halusit","halusitte","halusivat","halutessa","haluton","he","hei","heidän",
+                  "heidät","heihin","heille","heillä","heiltä","heissä","heistä","heitä","helposti","heti",
+                  "hetkellä","hieman","hitaasti","hoikein","huolimatta","huomenna","hyvien","hyviin","hyviksi",
+                  "hyville","hyviltä","hyvin","hyvinä","hyvissä","hyvistä","hyviä","hyvä","hyvät","hyvää","hän"
+                  ,"häneen","hänelle","hänellä","häneltä","hänen","hänessä","hänestä","hänet","häntä","ihan"
+                  ,"ilman","ilmeisesti","itse","itsensä","itseään","ja","jo","johon","joiden","joihin","joiksi",
+                  "joilla","joille","joilta","joina","joissa","joista","joita","joka","jokainen","jokin","joko",
+                  "joksi","joku","jolla","jolle","jolloin","jolta","jompikumpi","jona","jonka","jonkin","jonne",
+                  "joo","jopa","jos","joskus","jossa","josta","jota","jotain","joten","jotenkin","jotenkuten",
+                  "jotka","jotta","jouduimme","jouduin","jouduit","jouduitte","joudumme","joudun","joudutte",
+                  "joukkoon","joukossa","joukosta","joutua","joutui","joutuivat","joutumaan","joutuu","joutuvat",
+                  "juuri","jälkeen","jälleen","jää","kahdeksan","kahdeksannen","kahdella","kahdelle","kahdelta",
+                  "kahden","kahdessa","kahdesta","kahta","kahteen","kai","kaiken","kaikille","kaikilta","kaikkea",
+                  "kaikki","kaikkia","kaikkiaan","kaikkialla","kaikkialle","kaikkialta","kaikkien","kaikkin",
+                  "kaksi","kannalta","kannattaa","kanssa","kanssaan","kanssamme","kanssani","kanssanne","kanssasi",
+                  "kauan","kauemmas","kaukana","kautta","kehen","keiden","keihin","keiksi","keille","keillä",
+                  "keiltä","keinä","keissä","keistä","keitten","keittä","keitä","keneen","keneksi","kenelle",
+                  "kenellä","keneltä","kenen","kenenä","kenessä","kenestä","kenet","kenettä","kennessästä","kenties",
+                  "kerran","kerta","kertaa","keskellä","kesken","keskimäärin","ketkä","ketä","kiitos","kohti","koko",
+                  "kokonaan","kolmas","kolme","kolmen","kolmesti","koska","koskaan","kovin","kuin","kuinka",
+                  "kuinkan","kuitenkaan","kuitenkin","kuka","kukaan","kukin","kukka","kumpainen","kumpainenkaan",
+                  "kumpi","kumpikaan","kumpikin","kun","kuten","kuuden","kuusi","kuutta","kylliksi","kyllä",
+                  "kymmenen","kyse","liian","liki","lisäksi","lisää","lla","luo","luona","lähekkäin","lähelle",
+                  "lähellä","läheltä","lähemmäs","lähes","lähinnä","lähtien","läpi","mahdollisimman","mahdollista"
+                  ,"me","meidän","meidät","meihin","meille","meillä","meiltä","meissä","meistä","meitä","melkein",
+                  "melko","menee","meneet","menemme","menen","menet","menette","menevät","meni","menimme","menin",
+                  "menit","menivät","mennessä","mennyt","menossa","mihin","mikin","miksi","mikä","mikäli","mikään",
+                  "mille","milloin","milloinkan","millä","miltä","minkä","minne","minua","minulla","minulle",
+                  "minulta","minun","minussa","minusta","minut","minuun","minä","missä","mistä","miten","mitkä",
+                  "mitä","mitään","moi","molemmat","mones","monesti","monet","moni","moniaalla","moniaalle","moniaalta",
+                  "monta","muassa","muiden","muita","muka","mukaan","mukaansa","mukana","mutta","muu","muualla","muualle","muualta",
+                  "muuanne","muulloin","muun","muut","muuta","muutama","muutaman","muuten","myöhemmin","myös","myöskin","myöskään",
+                  "myötä","ne","neljä","neljän","neljää","niiden","niihin","niiksi","niille","niillä","niiltä","niin","niinä","niissä",
+                  "niistä","niitä","noiden","noihin","noiksi","noilla","noille","noilta","noin","noina","noissa","noista","noita",
+                  "nopeammin","nopeasti","nopeiten","nro","nuo","nyt","näiden","näihin","näiksi","näille","näillä","näiltä","näin",
+                  "näinä","näissä","näissähin","näissälle","näissältä","näissästä","näistä","näitä","nämä","ohi","oikea","oikealla",
+                  "oikein","ole","olemme","olen","olet","olette","oleva","olevan","olevat","oli","olimme","olin","olisi","olisimme",
+                  "olisin","olisit","olisitte","olisivat","olit","olitte","olivat","olla","olleet","olli","ollut","oma","omaa","omaan",
+                  "omaksi","omalle","omalta","oman","omassa","omat","omia","omien","omiin","omiksi","omille","omilta","omissa","omista",
+                  "on","onkin","onko","ovat","paikoittain","paitsi","pakosti","paljon","paremmin",
+                  "parempi","parhaillaan","parhaiten","perusteella","peräti","pian","pieneen","pieneksi",
+                  "pienelle","pienellä","pieneltä","pienempi","pienestä","pieni","pienin","poikki","puolesta",
+                  "puolestaan","päälle","runsaasti","saakka","sadam","sama","samaa","samaan","samalla",
+                  "samallalta","samallassa","samallasta","saman","samat","samoin","sata","sataa","satojen",
+                  "se","seitsemän","sekä","sen","seuraavat","siellä","sieltä","siihen","siinä","siis","siitä",
+                  "sijaan","siksi","sille","silloin","sillä","silti","siltä","sinne","sinua","sinulla","sinulle"
+                  ,"sinulta","sinun","sinussa","sinusta","sinut","sinuun","sinä","sisäkkäin","sisällä","siten",
+                  "sitten","sitä","ssa","sta","suoraan","suuntaan","suuren","suuret","suuri","suuria","suurin",
+                  "suurten","taa","taas","taemmas","tahansa","tai","takaa","takaisin","takana","takia","tallä",
+                  "tapauksessa","tarpeeksi","tavalla","tavoitteena","te","teidän","teidät","teihin","teille",
+                  "teillä","teiltä","teissä","teistä","teitä","tietysti","todella","toinen","toisaalla","toisaalle",
+                  "toisaalta","toiseen","toiseksi","toisella","toiselle","toiselta","toisemme","toisen","toisensa",
+                  "toisessa","toisesta","toista","toistaiseksi","toki","tosin","tuhannen","tuhat","tule","tulee",
+                  "tulemme","tulen","tulet","tulette","tulevat","tulimme","tulin","tulisi","tulisimme","tulisin",
+                  "tulisit","tulisitte","tulisivat","tulit","tulitte","tulivat","tulla","tulleet","tullut","tuntuu",
+                  "tuo","tuohon","tuoksi","tuolla","tuolle","tuolloin","tuolta","tuon","tuona","tuonne","tuossa","tuosta",
+                  "tuota","tuotä","tuskin","tykö","tähän","täksi","tälle","tällä","tällöin","tältä","tämä","tämän","tänne",
+                  "tänä","tänään","tässä","tästä","täten","tätä","täysin","täytyvät","täytyy","täällä","täältä","ulkopuolella",
+                  "usea","useasti","useimmiten","usein","useita","uudeksi","uudelleen","uuden","uudet","uusi","uusia","uusien",
+                  "uusinta","uuteen","uutta","vaan","vahemmän","vai","vaiheessa","vaikea","vaikean","vaikeat","vaikeilla",
+                  "vaikeille","vaikeilta","vaikeissa","vaikeista","vaikka","vain","varmasti","varsin",
+                  "varsinkin","varten","vasen","vasenmalla","vasta","vastaan","vastakkain","vastan",
+                  "verran","vielä","vierekkäin","vieressä","vieri","viiden","viime","viimeinen",
+                  "viimeisen","viimeksi","viisi","voi","voidaan","voimme","voin","voisi","voit",
+                  "voitte","voivat","vuoden","vuoksi","vuosi","vuosien","vuosina","vuotta","vähemmän",
+                  "vähintään","vähiten","vähän","välillä","yhdeksän","yhden","yhdessä","yhteen","yhteensä",
+                  "yhteydessä","yhteyteen","yhtä","yhtäälle","yhtäällä","yhtäältä","yhtään","yhä","yksi",
+                  "yksin","yksittäin","yleensä","ylemmäs","yli","ylös","ympäri","älköön","älä")
+```
+
+```{r}
+speech.cw_token_2 <- tokens_select(speech.cw_token_2, pattern = stopwords_fi2, selection = 'remove')
+```
+
+
+We successfully removed the stopwords! Let's retransform the tokenized texts to merge with the dataaset.
+
+
+```{r}
+speech.cw_merged$content.50_2 <- sapply(speech.cw_token_2, paste, collapse = " ")
+```
+
+
+Some basic changes to improve the dataset:
+
+
+```{r}
+speech.cw_preprocessed <- select(speech.cw_merged, -content.lower) # Removing unnecessary variable
+
+speech.cw_preprocessed <- speech.cw_preprocessed %>% # Renaming the variable
+  rename(
+    keyword = pattern
+  )
+
+speech.cw_preprocessed <- speech.cw_preprocessed %>% # Replacing the blank values with missing values (NA)
+  mutate(content.50_2 = ifelse(content.50_2 == "", NA, content.50_2))
+```
+
+
+Looks like a pretty nice text dataset to me now! However, we still have to stem the words within the texts.
+
+I am using the "finnsurveytext" package for that, which allows me to preprocess and analyze Finnish texts without even having any linguistic knowledge on the language. **Shoutout to Adeline, Matti, Maria, Tuukka, Kimmo, Emilia and everyone else involved in the creation of this really nice R package!!!**
+
+
+```{r}
+speech.cw_fst <- fst_prepare_conllu(speech.cw_preprocessed,
+                                    field = "content.50_2",
+                                    stopword_list = "none",
+                                    model = "tdt")
+```
+
+
+We have the stems of the words now. Almost done with preprocessing (hopefully)...
+
+Like before, we have to create a common identifying variable, which is 'X' once again.
+
+
+```{r}
+speech.cw_fst$X <- as.integer(substr(speech.cw_fst$doc_id, 4, nchar(speech.cw_fst$doc_id)))
+```
+
+
+And merge all the stemmed words based on the common values of 'X'.
+
+
+```{r}
+speech.cw_fst_aggregated <- speech.cw_fst %>%
+  group_by(X) %>%
+  summarise(
+    content.stemmed = paste(lemma, collapse = " ")
+  )
+```
+
+
+Final step (hopefully, again), let's merged the stemmed text to the *final* dataset.
+
+
+```{r}
+speech.cw_preprocessed <- merge(speech.cw_preprocessed, speech.cw_fst_aggregated, by = "X", all.x = TRUE)
+```
+
+
+We are done!
+
+Are we though? Let's change the 'na' string values to missing values (NA)
+
+```{r}
+speech.cw_preprocessed <- speech.cw_preprocessed %>% # Replacing the "na" values with missing values (NA)
+  mutate(content.stemmed = ifelse(content.stemmed == "na", NA, content.stemmed))
+```
+
+
+Yeah, looks like we have the final content (obviously needs reviewing; *relying on you Anni!*). I exported a csv named 'speech.cw_preprocessed' and uploaded to the repository by the time you read it.
 
 
