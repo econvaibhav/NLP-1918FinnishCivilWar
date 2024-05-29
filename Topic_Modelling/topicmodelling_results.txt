@@ -1,0 +1,160 @@
+#Resuts from topic modelling using entire dataset 
+#using defualt -10 topics- 
+
+[(0,
+  '0.024*"vallankumous" + 0.011*"kapina" + 0.007*"hallitus" + 0.007*"saada" + '
+  '0.006*"maa" + 0.006*"ed" + 0.005*"suomi" + 0.004*"tehdä" + 0.004*"venäjä" + '
+  '0.004*"kansa"'),
+ (1,
+  '0.013*"kapina" + 0.008*"vallankumous" + 0.008*"suomi" + 0.007*"hallitus" + '
+  '0.005*"saada" + 0.005*"alkaa" + 0.005*"tapahtua" + 0.005*"sellainen" + '
+  '0.005*"olla" + 0.005*"valtio"'),
+ (2,
+  '0.011*"kapina" + 0.011*"vallankumous" + 0.007*"venäjä" + 0.007*"suomi" + '
+  '0.005*"maa" + 0.005*"tapahtua" + 0.005*"olla" + 0.004*"kansa" + 0.004*"ed" '
+  '+ 0.004*"hallitus"'),
+ (3,
+  '0.021*"vallankumous" + 0.017*"kapina" + 0.010*"tapahtua" + 0.007*"ed" + '
+  '0.006*"maa" + 0.006*"olla" + 0.005*"tehdä" + 0.005*"suomi" + '
+  '0.005*"hallitus" + 0.005*"sellainen"'),
+ (4,
+  '0.009*"kapina" + 0.008*"vallankumous" + 0.008*"maa" + 0.007*"ed" + '
+  '0.007*"saada" + 0.007*"olla" + 0.006*"tehdä" + 0.006*"hallitus" + '
+  '0.005*"sota" + 0.005*"vuosi"'),
+ (5,
+  '0.033*"kapina" + 0.011*"vallankumous" + 0.009*"tehdä" + 0.009*"suomi" + '
+  '0.008*"saada" + 0.008*"olla" + 0.007*"maa" + 0.006*"sellainen" + '
+  '0.005*"kansa" + 0.005*"osa"'),
+ (6,
+  '0.012*"kapina" + 0.006*"vallankumous" + 0.005*"olla" + 0.005*"maa" + '
+  '0.004*"kysymys" + 0.004*"saada" + 0.004*"osa" + 0.004*"mieli" + '
+  '0.003*"tapahtua" + 0.003*"kaikki"'),
+ (7,
+  '0.017*"kapina" + 0.016*"vallankumous" + 0.008*"ed" + 0.007*"suomi" + '
+  '0.006*"maa" + 0.005*"kansa" + 0.005*"hallitus" + 0.004*"puhe#mies" + '
+  '0.004*"tehdä" + 0.004*"olla"'),
+ (8,
+  '0.027*"kapina" + 0.015*"vallankumous" + 0.009*"maa" + 0.007*"saada" + '
+  '0.007*"suomi" + 0.007*"sellainen" + 0.007*"ed" + 0.006*"tehdä" + '
+  '0.006*"hallitus" + 0.005*"sanoa"'),
+ (9,
+  '0.018*"kapina" + 0.015*"vallankumous" + 0.005*"laki" + 0.005*"maa" + '
+  '0.005*"saada" + 0.005*"kansa" + 0.005*"sanoa" + 0.004*"hallitus" + '
+  '0.004*"suomi" + 0.004*"ed"')]
+
+
+#using 10 but different methodology -- suggested from GPT
+
+[(0,
+  '0.003*"kapina" + 0.003*"vallankumous" + 0.002*"ed" + 0.002*"hallitus" + '
+  '0.002*"suomi" + 0.002*"maa" + 0.002*"tehdä" + 0.002*"saada" + 0.002*"olla" '
+  '+ 0.002*"kansa"'),
+ (1,
+  '0.002*"kapina" + 0.002*"suomi" + 0.001*"vallankumous" + 0.001*"maa" + '
+  '0.001*"venäjä" + 0.001*"hallitus" + 0.001*"tehdä" + 0.001*"saada" + '
+  '0.001*"kansa" + 0.001*"sellainen"'),
+ (2,
+  '0.001*"tehdä" + 0.001*"suomi" + 0.001*"kapina" + 0.001*"vallankumous" + '
+  '0.001*"edus#kunta" + 0.001*"kansa" + 0.001*"punainen" + 0.001*"sellainen" + '
+  '0.001*"maa" + 0.001*"suuri"'),
+ (3,
+  '0.001*"suomi" + 0.001*"tapahtua" + 0.001*"mieli" + 0.001*"kapina" + '
+  '0.001*"vallankumous" + 0.001*"hallitus" + 0.001*"vaikuttaa" + 0.001*"ed" + '
+  '0.001*"maa" + 0.001*"muutos"'),
+ (4,
+  '0.000*"porvaristo" + 0.000*"eräs" + 0.000*"matkustaa" + 0.000*"itsenäisyys" '
+  '+ 0.000*"käydä" + 0.000*"osa" + 0.000*"ajatus" + 0.000*"maa" + '
+  '0.000*"ilmaus" + 0.000*"vennola"'),
+ (5,
+  '0.000*"sdp" + 0.000*"vanha" + 0.000*"luulla" + 0.000*"tuomio" + '
+  '0.000*"palkka" + 0.000*"varjobudjetissa" + 0.000*"kärsijä" + 0.000*"juvose" '
+  '+ 0.000*"ajatuksilla" + 0.000*"raataja"'),
+ (6,
+  '0.000*"päiväjärjestyknen" + 0.000*"oikeudentunto" + 0.000*"työ" + '
+  '0.000*"oikeus" + 0.000*"tarkoittaa" + 0.000*"poikkeaa" + 0.000*"vielä" + '
+  '0.000*"enemmistö" + 0.000*"seurakunni" + 0.000*"kunni"'),
+ (7,
+  '0.000*"sonera" + 0.000*"toukokuu" + 0.000*"hallitus#muoto" + 0.000*"$" + '
+  '0.000*"tulkinnanvarainen" + 0.000*"viittaaa" + 0.000*"soveltamis#ala" + '
+  '0.000*"riittävän" + 0.000*"perus#oikeus" + 0.000*"epämääräinen"'),
+ (8,
+  '0.000*"yhteydest" + 0.000*"tyydyttäminen" + 0.000*"valtioll" + '
+  '0.000*"nykyääm" + 0.000*"valuutta" + 0.000*"å" + 0.000*"selostuksinen" + '
+  '0.000*"meto" + 0.000*"asiain#tila" + 0.000*"välillinen"'),
+ (9,
+  '0.000*"luopuminen" + 0.000*"lupaus" + 0.000*"saavuttaa" + 0.000*"yritys" + '
+  '0.000*"mittasuhte" + 0.000*"rangaistavaisuus" + 0.000*"tuvtaa" + '
+  '0.000*"elää" + 0.000*"joukkoliikkei" + 0.000*"#lippu"')]
+
+#Topic modeeling following juho's code --
+#using 10 comp 
+/usr/local/lib/python3.10/dist-packages/ipykernel/ipkernel.py:283: DeprecationWarning: `should_run_async` will not call `transform_cell` automatically in the future. Please pass the result to `transformed_cell` argument and any exception that happen during thetransform in `preprocessing_exc_tuple` in IPython 7.17 and above.
+  and should_run_async(code)
+/usr/local/lib/python3.10/dist-packages/sklearn/feature_extraction/text.py:1380: UserWarning: Upper case characters found in vocabulary while 'lowercase' is True. These entries will not be matched with any documents
+  warnings.warn(
+
+Topic 1:
+[('vallankumous', 67.83824022577252), ('tapahtua', 29.063972632304253), ('kapina', 27.42485014789528), ('maa', 23.804519158516698), ('päivä', 23.70979300256239), ('saada', 23.02417486891108), ('kunta', 20.36322824227774), ('suomi', 18.154201182141954), ('sota', 16.563836274543362), ('kansa', 15.96492853136805)]
+Topic 2:
+[('vallankumous', 50.67632276054362), ('kapina', 31.028695097389352), ('kunta', 29.101364871327252), ('hallitus', 28.52115040914818), ('valta', 26.605363567039987), ('sota', 25.810695131832915), ('mies', 22.230588754475054), ('oikeus', 22.12924153128523), ('laki', 21.756557142972174), ('maa', 21.49601511198601)]
+Topic 3:
+[('vallankumous', 84.48285574086755), ('kapina', 65.97962561822713), ('valta', 53.31686912289121), ('hallitus', 44.951735381791536), ('tapahtua', 39.28336549065624), ('kunta', 36.474027942337734), ('laki', 32.71025675497896), ('kysymys', 25.089353072126755), ('suomi', 25.078617818338913), ('mieli', 24.58923651649482)]
+Topic 4:
+[('sota', 124.07898654128456), ('vallankumous', 76.4865780182687), ('kapina', 68.80471826406031), ('ed', 50.20334780695319), ('tehdä', 36.4408524018366), ('olla', 36.186924010356535), ('kansa', 35.214738870919064), ('saada', 28.110883907780675), ('kunta', 26.393292075323856), ('tila', 26.353974257239944)]
+Topic 5:
+[('kapina', 185.82750163972932), ('kunta', 79.79026628349658), ('vallankumous', 67.80679592098565), ('sota', 60.95579503370008), ('suomi', 60.931523790709335), ('maa', 59.8535730444496), ('saada', 57.23009559423371), ('ed', 40.89221265015304), ('tehdä', 39.41780270661955), ('valta', 36.049560547680606)]
+Topic 6:
+[('vallankumous', 187.55486821551804), ('kapina', 66.64663291279804), ('venäjä', 56.473923878498326), ('maa', 56.40628946619947), ('suomi', 55.79143653923556), ('kunta', 43.29094018563671), ('tapahtua', 36.011024084736626), ('sota', 34.32792171394471), ('porvaristo', 32.26232969992096), ('sellainen', 31.733525515808005)]
+Topic 7:
+[('vallankumous', 221.88541848226302), ('kapina', 148.9145804728897), ('ed', 99.54179013184147), ('kunta', 98.12597063574852), ('maa', 87.57354145885887), ('suomi', 82.68751676347449), ('tehdä', 81.8503172823871), ('laki', 64.98730443708027), ('sota', 62.38117215766669), ('saada', 61.93749220154419)]
+Topic 8:
+[('kapina', 24.518551097229704), ('maa', 18.093314417444283), ('tehdä', 17.946778172371012), ('sota', 13.397791566890868), ('vallankumous', 12.836023305789071), ('saada', 11.393802593465402), ('puoli', 11.083976924566208), ('oikeus', 10.10010875566571), ('taho', 9.713190984250991), ('alkaa', 9.292296201225291)]
+Topic 9:
+[('kapina', 586.2169447995924), ('olla', 129.9848217284731), ('maa', 125.50963466423012), ('hallitus', 116.74391698104125), ('sota', 112.79250680754753), ('kunta', 104.86447856170837), ('saada', 87.73784893148954), ('kansa', 86.23905975262338), ('sellainen', 84.25003956516967), ('valta', 81.03586047723593)]
+Topic 10:
+[('vallankumous', 71.27063485304163), ('ed', 61.42065611866748), ('kunta', 54.496431201638615), ('suomi', 50.47879568196679), ('sota', 45.26812456189551), ('kapina', 40.63789995017441), ('työ', 37.21127046189705), ('hallitus', 34.15716049676144), ('tehdä', 30.34566573446533), ('saada', 29.113196310830777)]
+Document-Topic Distribution for the first document: [[0.00185211 0.00185208 0.98333043 0.00185216 0.00185224 0.00185213
+  0.00185226 0.00185209 0.00185237 0.00185213]]
+Model Log Likelihood: -433644.67374468147
+
+
+
+
+#results using 5 comp 
+Topic 1:
+[('vallankumous', 174.6209746576924), ('kapina', 96.11878377356823), ('maa', 76.29924240403295), ('kunta', 68.42188958556783), ('sota', 67.79208843559222), ('suomi', 59.536453197275584), ('saada', 59.13494600997371), ('tapahtua', 57.853992662390304), ('tehdä', 51.516332529189576), ('kansa', 48.41317793818859)]
+Topic 2:
+[('vallankumous', 128.54726116582685), ('kapina', 88.49001355358021), ('maa', 66.98805592679587), ('kunta', 57.55509407923559), ('hallitus', 57.34286411054083), ('laki', 53.98808194123797), ('valta', 52.648954483810265), ('sota', 43.02074200486091), ('oikeus', 40.02947785339819), ('sellainen', 35.818640690256004)]
+Topic 3:
+[('kapina', 237.59874578054317), ('vallankumous', 204.76919626065722), ('hallitus', 130.37267224733466), ('valta', 117.56525644350685), ('venäjä', 105.24889975887939), ('tapahtua', 97.93146387418504), ('kunta', 97.39857707351187), ('suomi', 92.82117131726369), ('ed', 90.02438514980226), ('sota', 83.16901026234227)]
+Topic 4:
+[('vallankumous', 217.69319529324204), ('sota', 175.739718934568), ('kapina', 164.44622496303296), ('ed', 107.02658726866692), ('tehdä', 70.03825786041172), ('laki', 69.3091654903603), ('saada', 69.21249967079125), ('olla', 62.6485614579561), ('kunta', 56.518079666149205), ('sellainen', 53.42875336487924)]
+Topic 5:
+[('kapina', 659.3462319292604), ('kunta', 213.10635959552081), ('maa', 195.80676493992723), ('suomi', 175.6430302969598), ('vallankumous', 165.36937262256663), ('saada', 155.93518607573017), ('sota', 147.2784403626219), ('olla', 125.63935276940684), ('tehdä', 124.72322415206513), ('kansa', 101.79341234797361)]
+Document-Topic Distribution for the first document: [[0.00380586 0.00377714 0.17516463 0.81342969 0.00382268]]
+Model Log Likelihood: -429186.37939943117
+
+#log lik suggesting poor fit 
+
+##
+LDA using 5 comp - gensim 
+[(0,
+  '0.026*"kapina" + 0.013*"vallankumous" + 0.007*"tehdä" + 0.007*"olla" + '
+  '0.006*"ed" + 0.005*"maa" + 0.005*"sanoa" + 0.005*"saada" + '
+  '0.005*"sellainen" + 0.004*"tapahtua"'),
+ (1,
+  '0.017*"vallankumous" + 0.011*"kapina" + 0.008*"tehdä" + 0.007*"ed" + '
+  '0.007*"maa" + 0.006*"saada" + 0.005*"suomi" + 0.004*"hallitus" + '
+  '0.004*"pitää" + 0.004*"sanoa"'),
+ (2,
+  '0.017*"vallankumous" + 0.011*"kapina" + 0.008*"suomi" + 0.006*"tehdä" + '
+  '0.005*"maa" + 0.005*"olla" + 0.005*"hallitus" + 0.005*"mieli" + '
+  '0.004*"tapahtua" + 0.004*"kansa"'),
+ (3,
+  '0.016*"vallankumous" + 0.013*"kapina" + 0.008*"suomi" + 0.008*"maa" + '
+  '0.006*"sellainen" + 0.006*"tapahtua" + 0.005*"kansa" + 0.005*"saada" + '
+  '0.005*"olla" + 0.005*"venäjä"'),
+ (4,
+  '0.033*"kapina" + 0.009*"saada" + 0.008*"suomi" + 0.008*"hallitus" + '
+  '0.007*"maa" + 0.007*"vallankumous" + 0.006*"ed" + 0.006*"olla" + '
+  '0.004*"pitää" + 0.004*"osa"')]
