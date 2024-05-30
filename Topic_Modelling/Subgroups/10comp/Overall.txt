@@ -1,0 +1,85 @@
+/usr/local/lib/python3.10/dist-packages/ipykernel/ipkernel.py:283: DeprecationWarning: `should_run_async` will not call `transform_cell` automatically in the future. Please pass the result to `transformed_cell` argument and any exception that happen during thetransform in `preprocessing_exc_tuple` in IPython 7.17 and above.
+  and should_run_async(code)
+WARNING:gensim.models.ldamulticore:too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+
+Topics for gender = Female:
+[(0, '0.013*"vallankumous" + 0.011*"maa" + 0.010*"kapina" + 0.009*"tapahtua" + 0.005*"saada"'), (1, '0.014*"kapina" + 0.007*"saada" + 0.007*"sellainen" + 0.006*"ed" + 0.006*"pitää"'), (2, '0.010*"kapina" + 0.010*"maa" + 0.009*"vallankumous" + 0.006*"sellainen" + 0.005*"toiminta"'), (3, '0.009*"kapina" + 0.008*"sellainen" + 0.007*"vallankumous" + 0.006*"työttömyys" + 0.005*"liitto"'), (4, '0.024*"kapina" + 0.010*"nousta" + 0.007*"ed" + 0.007*"osa" + 0.006*"päätös"'), (5, '0.017*"suomi" + 0.012*"vallankumous" + 0.007*"venäjä" + 0.007*"ed" + 0.007*"maa"'), (6, '0.009*"kapina" + 0.009*"vallankumous" + 0.007*"hallitus" + 0.006*"mieli" + 0.006*"kansa"'), (7, '0.010*"kapina" + 0.009*"vallankumous" + 0.007*"maa" + 0.007*"ihminen" + 0.006*"suomi"'), (8, '0.011*"vallankumous" + 0.009*"ed" + 0.007*"kapina" + 0.006*"tehdä" + 0.006*"tapahtua"'), (9, '0.019*"vallankumous" + 0.010*"ed" + 0.009*"kapina" + 0.006*"puhe#mies" + 0.005*"hallitus"')]
+LDA visualization saved to ./results/ldavis_gender_Female_topics_10.html
+
+WARNING:gensim.models.ldamulticore:too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+
+Topics for gender = Male:
+[(0, '0.024*"kapina" + 0.016*"vallankumous" + 0.010*"maa" + 0.008*"suomi" + 0.008*"olla"'), (1, '0.020*"vallankumous" + 0.017*"kapina" + 0.007*"saada" + 0.007*"suomi" + 0.005*"olla"'), (2, '0.014*"kapina" + 0.012*"vallankumous" + 0.009*"ed" + 0.006*"saada" + 0.005*"voida"'), (3, '0.027*"kapina" + 0.012*"vallankumous" + 0.011*"suomi" + 0.008*"maa" + 0.008*"olla"'), (4, '0.018*"kapina" + 0.010*"vallankumous" + 0.008*"suomi" + 0.007*"maa" + 0.006*"tehdä"'), (5, '0.019*"vallankumous" + 0.006*"maa" + 0.006*"kapina" + 0.006*"edus#kunta" + 0.005*"saada"'), (6, '0.017*"kapina" + 0.013*"vallankumous" + 0.008*"saada" + 0.008*"ed" + 0.007*"sellainen"'), (7, '0.024*"kapina" + 0.011*"hallitus" + 0.009*"vallankumous" + 0.007*"saada" + 0.006*"maa"'), (8, '0.024*"kapina" + 0.010*"vallankumous" + 0.009*"tehdä" + 0.006*"venäjä" + 0.006*"maa"'), (9, '0.022*"kapina" + 0.019*"vallankumous" + 0.008*"maa" + 0.006*"suomi" + 0.006*"kansa"')]
+
+WARNING:gensim.models.ldamulticore:too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+
+LDA visualization saved to ./results/ldavis_gender_Male_topics_10.html
+Topics for Age.Group_Speech. = 46-55:
+[(0, '0.021*"kapina" + 0.011*"vallankumous" + 0.008*"ed" + 0.008*"saada" + 0.007*"suomi"'), (1, '0.028*"kapina" + 0.009*"vallankumous" + 0.008*"ed" + 0.007*"olla" + 0.006*"tehdä"'), (2, '0.022*"vallankumous" + 0.015*"kapina" + 0.009*"suomi" + 0.009*"maa" + 0.009*"tapahtua"'), (3, '0.024*"kapina" + 0.007*"vallankumous" + 0.007*"osa" + 0.006*"saada" + 0.005*"ed"'), (4, '0.017*"kapina" + 0.012*"hallitus" + 0.010*"vallankumous" + 0.006*"saada" + 0.006*"kansalais#sota"'), (5, '0.017*"kapina" + 0.012*"maa" + 0.012*"suomi" + 0.009*"olla" + 0.008*"vallankumous"'), (6, '0.013*"kapina" + 0.007*"olla" + 0.006*"sota" + 0.005*"kansalais#sota" + 0.005*"ed"'), (7, '0.033*"kapina" + 0.008*"vallankumous" + 0.007*"sanoa" + 0.006*"ed" + 0.005*"maa"'), (8, '0.016*"vallankumous" + 0.009*"kapina" + 0.008*"suomi" + 0.006*"kysymys" + 0.006*"maa"'), (9, '0.016*"vallankumous" + 0.012*"ed" + 0.011*"kapina" + 0.006*"suomi" + 0.005*"tehdä"')]
+
+WARNING:gensim.models.ldamulticore:too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+
+LDA visualization saved to ./results/ldavis_Age.Group_Speech._46-55_topics_10.html
+Topics for Age.Group_Speech. = 56-65:
+[(0, '0.021*"vallankumous" + 0.015*"kansa" + 0.009*"saada" + 0.008*"olla" + 0.008*"kapina"'), (1, '0.010*"vallankumous" + 0.009*"tehdä" + 0.007*"kapina" + 0.006*"suomi" + 0.005*"olla"'), (2, '0.025*"kapina" + 0.016*"vallankumous" + 0.009*"ed" + 0.008*"suomi" + 0.007*"maa"'), (3, '0.018*"vallankumous" + 0.009*"venäjä" + 0.008*"kapina" + 0.008*"hallitus" + 0.007*"sellainen"'), (4, '0.013*"kapina" + 0.010*"ed" + 0.008*"vallankumous" + 0.008*"hallitus" + 0.006*"suomi"'), (5, '0.011*"vallankumous" + 0.009*"kapina" + 0.006*"maa" + 0.005*"tehdä" + 0.005*"valtio"'), (6, '0.011*"vallankumous" + 0.009*"kapina" + 0.005*"sanoa" + 0.004*"käydä" + 0.004*"puolue"'), (7, '0.028*"kapina" + 0.014*"vallankumous" + 0.010*"suomi" + 0.008*"saada" + 0.007*"tehdä"'), (8, '0.023*"kapina" + 0.011*"vallankumous" + 0.010*"tehdä" + 0.008*"hallitus" + 0.007*"punainen"'), (9, '0.011*"maa" + 0.011*"kapina" + 0.008*"vallankumous" + 0.005*"hallitus" + 0.004*"laillinen"')]
+
+WARNING:gensim.models.ldamulticore:too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+
+LDA visualization saved to ./results/ldavis_Age.Group_Speech._56-65_topics_10.html
+Topics for Age.Group_Speech. = 36-45:
+[(0, '0.019*"kapina" + 0.009*"vallankumous" + 0.008*"hallitus" + 0.006*"tasa#valta" + 0.006*"tapahtua"'), (1, '0.023*"kapina" + 0.011*"vallankumous" + 0.008*"maa" + 0.008*"tehdä" + 0.006*"kansa"'), (2, '0.020*"kapina" + 0.008*"vallankumous" + 0.007*"osa" + 0.006*"sellainen" + 0.006*"hallitus"'), (3, '0.027*"kapina" + 0.015*"saada" + 0.011*"olla" + 0.009*"hallitus" + 0.008*"vallankumous"'), (4, '0.030*"kapina" + 0.009*"maa" + 0.007*"saada" + 0.005*"sanoa" + 0.005*"n"'), (5, '0.032*"vallankumous" + 0.009*"ed" + 0.008*"suomi" + 0.008*"hallitus" + 0.007*"kapina"'), (6, '0.020*"kapina" + 0.009*"vallankumous" + 0.007*"maa" + 0.007*"saada" + 0.007*"tehdä"'), (7, '0.015*"kapina" + 0.011*"ed" + 0.010*"vallankumous" + 0.009*"maa" + 0.008*"saada"'), (8, '0.012*"kapina" + 0.009*"vallankumous" + 0.005*"taho" + 0.004*"olla" + 0.004*"sellainen"'), (9, '0.023*"vallankumous" + 0.010*"kapina" + 0.006*"tapahtua" + 0.005*"suomi" + 0.005*"maa"')]
+
+WARNING:gensim.models.ldamulticore:too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+
+LDA visualization saved to ./results/ldavis_Age.Group_Speech._36-45_topics_10.html
+Topics for Age.Group_Speech. = 25-35:
+[(0, '0.017*"vallankumous" + 0.009*"sota" + 0.008*"suomi" + 0.007*"maa" + 0.006*"kapina"'), (1, '0.016*"kapina" + 0.010*"vallankumous" + 0.008*"sanoa" + 0.007*"tehdä" + 0.007*"tapahtua"'), (2, '0.013*"kapina" + 0.012*"vallankumous" + 0.008*"maa" + 0.008*"saada" + 0.007*"kansa"'), (3, '0.010*"vallankumous" + 0.008*"vuosi" + 0.008*"maa" + 0.007*"tehdä" + 0.006*"miljoona"'), (4, '0.013*"vallankumous" + 0.013*"kapina" + 0.010*"maa" + 0.008*"tapahtuma" + 0.006*"saattaa"'), (5, '0.018*"vallankumous" + 0.012*"maa" + 0.012*"ed" + 0.007*"ihminen" + 0.006*"venäjä"'), (6, '0.026*"vallankumous" + 0.013*"tapahtua" + 0.007*"saada" + 0.007*"maa" + 0.007*"olla"'), (7, '0.016*"vallankumous" + 0.010*"kapina" + 0.010*"kysymys" + 0.009*"maa" + 0.005*"venäjä"'), (8, '0.026*"kapina" + 0.013*"vallankumous" + 0.008*"maa" + 0.008*"olla" + 0.007*"kansa"'), (9, '0.025*"kapina" + 0.023*"vallankumous" + 0.008*"maa" + 0.008*"suomi" + 0.007*"tehdä"')]
+
+WARNING:gensim.models.ldamulticore:too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+
+LDA visualization saved to ./results/ldavis_Age.Group_Speech._25-35_topics_10.html
+Topics for Age.Group_Speech. = 66+:
+[(0, '0.018*"kapina" + 0.013*"vaikuttaa" + 0.009*"suomi" + 0.009*"mainita" + 0.009*"sisällis#sota"'), (1, '0.009*"vallankumous" + 0.007*"venäjä" + 0.006*"vielä" + 0.005*"löytää" + 0.005*"hävittää"'), (2, '0.013*"kapina" + 0.011*"sisällissota" + 0.011*"olla" + 0.011*"kukkoni" + 0.010*"rovasti"'), (3, '0.023*"vallankumous" + 0.015*"linja" + 0.013*"omistus#oikeus" + 0.010*"tehdä" + 0.009*"itälä"'), (4, '0.031*"kapina" + 0.017*"rikos#laki" + 0.016*"vastustaminen" + 0.012*"virka#mies" + 0.012*"saada"'), (5, '0.030*"kapina" + 0.008*"nähdä" + 0.008*"apu" + 0.007*"jättää" + 0.007*"herra"'), (6, '0.028*"suomi" + 0.021*"ed" + 0.015*"vallankumous" + 0.015*"laine" + 0.012*"hallitus"'), (7, '0.004*"vallankumous" + 0.004*"epä#kohta" + 0.004*"tarkoitus" + 0.004*"hävittää" + 0.004*"seikka"'), (8, '0.008*"kapina" + 0.006*"hallitus" + 0.005*"puhe#mies" + 0.004*"termi" + 0.004*"vaarallinen"'), (9, '0.030*"suomi" + 0.012*"kansa" + 0.011*"kapina" + 0.010*"sota" + 0.009*"kansa#kunta"')]
+
+WARNING:gensim.models.ldamulticore:too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+
+LDA visualization saved to ./results/ldavis_Age.Group_Speech._66+_topics_10.html
+Topics for Speech.Length = Long:
+[(0, '0.014*"kapina" + 0.009*"vallankumous" + 0.008*"päivä" + 0.008*"maa" + 0.007*"saada"'), (1, '0.024*"vallankumous" + 0.011*"kapina" + 0.009*"hallitus" + 0.008*"saada" + 0.007*"kansa"'), (2, '0.016*"kapina" + 0.012*"ed" + 0.011*"maa" + 0.009*"vallankumous" + 0.007*"suomi"'), (3, '0.018*"vallankumous" + 0.014*"kapina" + 0.012*"olla" + 0.010*"suomi" + 0.009*"saada"'), (4, '0.012*"kapina" + 0.005*"maa" + 0.005*"saada" + 0.005*"olla" + 0.005*"sellainen"'), (5, '0.011*"kapina" + 0.009*"hallitus" + 0.007*"tehdä" + 0.007*"vallankumous" + 0.006*"osa"'), (6, '0.013*"kapina" + 0.009*"vallankumous" + 0.007*"tehdä" + 0.007*"hallitus" + 0.006*"kansa"'), (7, '0.032*"kapina" + 0.010*"ed" + 0.009*"maa" + 0.007*"mäntsälä" + 0.006*"tehdä"'), (8, '0.027*"kapina" + 0.010*"vallankumous" + 0.009*"maa" + 0.006*"tehdä" + 0.006*"hallitus"'), (9, '0.015*"kapina" + 0.007*"hallitus" + 0.007*"kansa" + 0.006*"vallankumous" + 0.006*"suomi"')]
+
+WARNING:gensim.models.ldamulticore:too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+
+LDA visualization saved to ./results/ldavis_Speech.Length_Long_topics_10.html
+Topics for Speech.Length = Short:
+[(0, '0.016*"kapina" + 0.011*"suomi" + 0.011*"vallankumous" + 0.006*"maa" + 0.005*"pitää"'), (1, '0.018*"kapina" + 0.007*"hallitus" + 0.006*"saada" + 0.006*"olla" + 0.006*"vallankumous"'), (2, '0.022*"kapina" + 0.017*"vallankumous" + 0.009*"saada" + 0.008*"syntyä" + 0.007*"tehdä"'), (3, '0.016*"maa" + 0.013*"vallankumous" + 0.009*"ed" + 0.008*"suomi" + 0.007*"kapina"'), (4, '0.010*"kapina" + 0.010*"vallankumous" + 0.007*"hallitus" + 0.007*"ed" + 0.005*"tehdä"'), (5, '0.032*"kapina" + 0.015*"vallankumous" + 0.008*"hallitus" + 0.005*"maa" + 0.004*"mainita"'), (6, '0.017*"kapina" + 0.012*"vallankumous" + 0.010*"tapahtua" + 0.009*"venäjä" + 0.009*"sellainen"'), (7, '0.012*"vallankumous" + 0.008*"sota" + 0.007*"suomi" + 0.007*"tapahtua" + 0.006*"pitää"'), (8, '0.024*"kapina" + 0.018*"vallankumous" + 0.011*"suomi" + 0.010*"olla" + 0.006*"maa"'), (9, '0.017*"kapina" + 0.008*"suomi" + 0.007*"kansa" + 0.006*"olla" + 0.006*"saada"')]
+
+/usr/local/lib/python3.10/dist-packages/pyLDAvis/_prepare.py:299: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  token_table['Freq'] = token_table['Freq'].round()
+/usr/local/lib/python3.10/dist-packages/pyLDAvis/_prepare.py:300: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  token_table['Term'] = vocab[token_table.index.values].values
+/usr/local/lib/python3.10/dist-packages/pyLDAvis/_prepare.py:302: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  token_table['Freq'] = token_table.Freq / term_frequency[token_table.index]
+WARNING:gensim.models.ldamulticore:too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+
+LDA visualization saved to ./results/ldavis_Speech.Length_Short_topics_10.html
+Topics for Speech.Length = Very Long:
+[(0, '0.011*"vallankumous" + 0.008*"maa" + 0.008*"kapina" + 0.008*"olla" + 0.007*"ed"'), (1, '0.018*"vallankumous" + 0.015*"kapina" + 0.009*"maa" + 0.007*"saada" + 0.005*"olla"'), (2, '0.012*"vallankumous" + 0.008*"kapina" + 0.004*"sellainen" + 0.004*"tapahtua" + 0.004*"olla"'), (3, '0.026*"kapina" + 0.009*"vallankumous" + 0.008*"maa" + 0.006*"sellainen" + 0.006*"voida"'), (4, '0.025*"kapina" + 0.010*"vallankumous" + 0.009*"hallitus" + 0.008*"mäntsälä" + 0.007*"suomi"'), (5, '0.020*"vallankumous" + 0.014*"kapina" + 0.010*"saada" + 0.006*"ed" + 0.005*"pitää"'), (6, '0.023*"vallankumous" + 0.008*"kapina" + 0.008*"tehdä" + 0.007*"maa" + 0.007*"venäjä"'), (7, '0.025*"kapina" + 0.013*"vallankumous" + 0.008*"maa" + 0.006*"saada" + 0.006*"kansa"'), (8, '0.029*"kapina" + 0.012*"vallankumous" + 0.009*"suomi" + 0.008*"tapahtua" + 0.006*"maa"'), (9, '0.027*"vallankumous" + 0.012*"kapina" + 0.011*"ed" + 0.009*"tapahtua" + 0.008*"olla"')]
+
+WARNING:gensim.models.ldamulticore:too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+
+LDA visualization saved to ./results/ldavis_Speech.Length_Very Long_topics_10.html
+Topics for Speech.Length = Very Short:
+[(0, '0.035*"kapina" + 0.013*"vallankumous" + 0.011*"saada" + 0.007*"suomi" + 0.006*"tapahtua"'), (1, '0.014*"vallankumous" + 0.011*"tehdä" + 0.009*"suomi" + 0.008*"kapina" + 0.008*"pitää"'), (2, '0.021*"kapina" + 0.014*"suomi" + 0.011*"maa" + 0.009*"hallitus" + 0.007*"puhe#mies"'), (3, '0.019*"kapina" + 0.011*"vallankumous" + 0.007*"ed" + 0.005*"puhe#mies" + 0.005*"sanoa"'), (4, '0.012*"kapina" + 0.011*"vallankumous" + 0.009*"ed" + 0.006*"laki" + 0.005*"lähteä"'), (5, '0.017*"vallankumous" + 0.008*"suomi" + 0.006*"tapahtua" + 0.005*"muutos" + 0.005*"lähteä"'), (6, '0.011*"vallankumous" + 0.009*"kapina" + 0.008*"ed" + 0.006*"tehdä" + 0.005*"hallitus"'), (7, '0.019*"kapina" + 0.010*"tehdä" + 0.009*"ed" + 0.008*"vallankumous" + 0.008*"maa"'), (8, '0.014*"kapina" + 0.009*"hallitus" + 0.009*"vallankumous" + 0.006*"sellainen" + 0.006*"olla"'), (9, '0.018*"vallankumous" + 0.016*"ed" + 0.016*"kapina" + 0.010*"kansa" + 0.008*"tehdä"')]
+LDA visualization saved to ./results/ldavis_Speech.Length_Very Short_topics_10.html
